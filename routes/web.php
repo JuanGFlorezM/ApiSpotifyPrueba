@@ -11,9 +11,11 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+/*Route::get('/', function () {
+    return view('lanzamientos');
+});*/
+
+Route::get('/', 'SpotifyController@lanzamientos');
 
 Route::get('lanzamientos', 'SpotifyController@lanzamientos');
 
