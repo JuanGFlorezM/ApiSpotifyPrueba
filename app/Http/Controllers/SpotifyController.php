@@ -30,15 +30,50 @@ class SpotifyController extends Controller
         //cuantos va a compensar
         $offset = 5;
 
-        //Obtenemos los albums del artista
+        //Obtenemos los albumes del artista
         $search = $api->getArtistAlbums($id, $limit, $offset, ['single', 'appears_on']);
-        $albumes = collect($search->items);
-        
-
+        $albumes = collect($search->items);      
+             
+          
+        //Get artistas
         $artists = $api->getArtists($id);
         $artistas = collect($artists);
-        //return $artistas;
+        
+        //return $artistas;        
         //return $albumes;
+        $i = 0 ;
+        foreach($albumes as $album){
+            $canciones = $this->canciones($album->id);
+            $album->tracks = array();
+            foreach($canciones as $cancion){        
+	
+                $album->tracks = array_add($album->tracks, $i,$cancion->name );
+                $i = $i +1;
+            }
+        }
+        
         return view('artistas', ['albumes' =>$albumes, 'artistas' =>$artistas]);
+        //return $albumes;
     }
+
+    public function canciones($id)
+    {
+        $api = new Larafy();
+        //cantidad maxima de albumes de artista
+        $limit = 25;
+        //cuantos va a compensar
+        $offset = 0;
+        
+        //Get album's tracks.
+        $searchcanciones = $api->getAlbumTracks($id, $limit, $offset);
+        $canciones = collect($searchcanciones->items);
+        return $canciones; 
+        //return view('canciones', ['canciones' =>$canciones]);    
+                
+    }
+
+     
+
+    
+
 }
