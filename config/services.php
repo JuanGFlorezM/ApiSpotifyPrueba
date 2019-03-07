@@ -45,9 +45,9 @@ return [
     ],
 
     'spotify' => [
-        'client_id' => env('a73a1cbbc4ae46cdbebca01cafc00e64'),
-        'client_secret' => env('5aa7ffecc3a64bf4a53f65682f066915'),
-        'redirect' => env('http://127.0.0.1:8000/login/oauth')
+        'client_id' => env('SPOTIFY_KEY'),
+        'client_secret' => env('SPOTIFY_SECRET'),
+        'redirect' => env('SPOTIFY_REDIRECT_URI')
     ],
 
 ];

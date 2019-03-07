@@ -14,3 +14,7 @@
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('lanzamientos', 'SpotifyController@lanzamientos');
+
+Route::get('artistas/{id}', 'SpotifyController@artistas');
