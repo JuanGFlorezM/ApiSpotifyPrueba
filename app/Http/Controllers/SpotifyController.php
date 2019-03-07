@@ -37,15 +37,14 @@ class SpotifyController extends Controller
           
         //Get artistas
         $artists = $api->getArtists($id);
-        $artistas = collect($artists);
+        $artistas = collect($artists);       
+               
         
-        //return $artistas;        
-        //return $albumes;
         $i = 0 ;
         foreach($albumes as $album){
             $canciones = $this->canciones($album->id);
             $album->tracks = array();
-            foreach($canciones as $cancion){        
+            foreach($canciones as $cancion){      
 	
                 $album->tracks = array_add($album->tracks, $i,$cancion->name );
                 $i = $i +1;
@@ -53,6 +52,7 @@ class SpotifyController extends Controller
         }
         
         return view('artistas', ['albumes' =>$albumes, 'artistas' =>$artistas]);
+        //return $artistas; 
         //return $albumes;
     }
 

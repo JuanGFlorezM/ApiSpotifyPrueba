@@ -40,13 +40,11 @@
                 <div class="card-title text-center">
                     <strong>{{$item->name}}</strong>                    
                 </div>
-                <div class="card-text text-center">                        
-                    
+                <div class="card-text text-center">                       
                     @foreach ($item->tracks as $track)
                         {{$track}}<br>
                     @endforeach
-                </div>               
-                
+                </div>             
             </div>
         @endforeach
         </div>
