@@ -17,7 +17,9 @@ class SpotifyController extends Controller
         $offset = 5;
         $search = $api->getNewReleases($limit, $offset);        
         $lanzamientos = collect($search->items);
-        return $lanzamientos;
+        //return $lanzamientos;
+        //retorna json --> lanzamientos:vista + variable
+        return view('lanzamientos', ['lanzamientos' =>$lanzamientos]);
     }
 
     public function artistas($id)
@@ -28,8 +30,14 @@ class SpotifyController extends Controller
         //cuantos va a compensar
         $offset = 5;
 
-        $search = $api->getArtistAlbums($id, $limit, $offset, ['single']);
-        $artists = collect($search->items);
-        return $artists;
+        $search = $api->getArtistAlbums($id, $limit, $offset, ['single', 'appears_on']);
+        $albumes = collect($search->items);
+        
+
+        $artists = $api->getArtists($id);
+        $artistas = collect($artists);
+        //return $artistas;
+        //return $albumes;
+        return view('artistas', ['albumes' =>$albumes, 'artistas' =>$artistas]);
     }
 }
