@@ -12,7 +12,7 @@ class SpotifyController extends Controller
         $api = new Larafy();
         
         //cantidad maxima de albumes de artista
-        $limit = 15;
+        $limit = 18;
         //cuantos va a compensar
         $offset = 5;
         $search = $api->getNewReleases($limit, $offset);        
@@ -30,6 +30,7 @@ class SpotifyController extends Controller
         //cuantos va a compensar
         $offset = 5;
 
+        //Obtenemos los albums del artista
         $search = $api->getArtistAlbums($id, $limit, $offset, ['single', 'appears_on']);
         $albumes = collect($search->items);
         
