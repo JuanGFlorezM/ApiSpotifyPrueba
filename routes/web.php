@@ -18,3 +18,5 @@ Route::get('/', function () {
 Route::get('lanzamientos', 'SpotifyController@lanzamientos');
 
 Route::get('artistas/{id}', 'SpotifyController@artistas');
+
+Route::get('canciones/{id}', 'SpotifyController@canciones');
